@@ -23,6 +23,7 @@ platname-$(CONFIG_BOARD_HPTOUCHPAD)		+= "HP-TouchPad"
 platname-$(CONFIG_BOARD_HTC_HD2)		+= "HTC-HD2"
 platname-$(CONFIG_BOARD_BCM2836)		+= "BCM2836"
 platname-$(CONFIG_BOARD_IMX53_USBARMORY)	+= "IMX53-USBarmory"
+platname-$(CONFIG_BOARD_SAMSUNG_JF)		+= "Galaxy-S4"
 
 export platname-y := $(platname-y)
 
@@ -37,6 +38,7 @@ LD		+= -EL -nostdlib
 comma = ,
 
 # Processor type
+arch-$(CONFIG_PROC_CORTEX_A15)           =-D__LINUX_ARM_ARCH__=7 $(call cc-option,-march=armv7-a,-march=armv5t -Wa$(comma)-march=armv7-a)
 arch-$(CONFIG_PROC_CORTEX_A9)		=-D__LINUX_ARM_ARCH__=7 $(call cc-option,-march=armv7-a,-march=armv5t -Wa$(comma)-march=armv7-a)
 arch-$(CONFIG_PROC_CORTEX_A8)		=-D__LINUX_ARM_ARCH__=7 $(call cc-option,-march=armv7-a,-march=armv5t -Wa$(comma)-march=armv7-a)
 arch-$(CONFIG_PROC_CORTEX_A7)		=-D__LINUX_ARM_ARCH__=7 $(call cc-option,-march=armv7-a,-march=armv5t -Wa$(comma)-march=armv7-a)
@@ -54,7 +56,7 @@ textofs-$(CONFIG_BOARD_HPTOUCHPAD)	:= 0x44000040
 textofs-$(CONFIG_BOARD_HTC_HD2)		:= 0x11808000
 textofs-$(CONFIG_BOARD_BCM2836)		:= 0x00008000
 textofs-$(CONFIG_BOARD_IMX53_USBARMORY)	:= 0x74000040
-
+textofs-$(CONFIG_BOARD_SAMSUNG_JF)      := 0x80208000
 
 export TEXT_OFFSET := $(textofs-y)
 
@@ -86,5 +88,6 @@ core-$(CONFIG_BOARD_HPTOUCHPAD)		+= arch/arm/plat-hptouchpad/
 core-$(CONFIG_BOARD_HTC_HD2)		+= arch/arm/plat-htchd2/
 core-$(CONFIG_BOARD_BCM2836)		+= arch/arm/plat-bcm2836/
 core-$(CONFIG_BOARD_IMX53_USBARMORY)	+= arch/arm/plat-imx53usbarmory/
+core-$(CONFIG_BOARD_SAMSUNG_JF)		+= arch/arm/plat-samsungjf/
 
 core-y				+= arch/arm/common/

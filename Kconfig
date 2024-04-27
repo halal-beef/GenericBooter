@@ -8,6 +8,9 @@ choice
 	prompt "ARM processor target"
 	default PROC_CORTEX_A8
 
+config PROC_CORTEX_A15
+	bool "Cortex-A15"
+
 config PROC_CORTEX_A9
 	bool "Cortex-A9"
 
@@ -56,6 +59,10 @@ config BOARD_BCM2836
 config BOARD_IMX53_USBARMORY
 	bool "Inverse Path USB armory MkI"
 	depends on PROC_CORTEX_A8
+
+config BOARD_SAMSUNG_JF
+	bool "Samsung Galaxy S4"
+	depends on PROC_CORTEX_A15
 
 endchoice
 

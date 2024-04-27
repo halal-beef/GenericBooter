@@ -33,7 +33,7 @@
 .section .bl_title,"aS"
 .globl _bl_title
 _bl_title:
-    .asciz "GenericBooter for IMX53-USBarmory, Copyright 2013, winocm."
+    .asciz "GenericBooter for Galaxy-S4, Copyright 2013, winocm."
     .align 4
 
 .section .bl_build,"aS"
@@ -45,6 +45,6 @@ _bl_build:
 .section .bl_revision,"aS"
 .globl _bl_revision
 _bl_revision:
-    .asciz "GenericBooter-200.1-7-gad4c097-dirty"
+    .asciz ""
     .align 4
 

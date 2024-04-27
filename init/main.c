@@ -192,6 +192,19 @@ corestart_main(uint32_t __unused, uint32_t machine_type, struct atag *atags)
     /* Bringup boot-args. */
     strncpy(gBootArgs.commandLine, "rd=md0 -v -s serial=2", BOOT_LINE_LENGTH);
 #endif
+#ifdef CONFIG_BOARD_SAMSUNG_JF
+    /* Artificial RAM base for now. */
+    gBootArgs.physBase = 0x90200000;
+    gBootArgs.memSize = 2 * 1024 * 1024 * 1024;
+
+    malloc_init((char *)gBootArgs.physBase + gBootArgs.memSize -
+                MALLOC_SIZE, MALLOC_SIZE);
+    is_malloc_inited = 1;
+
+    /* Bringup boot-args. */
+    strncpy(gBootArgs.commandLine, "rd=md0 -v -s debug=0x16f kprintf=1", BOOT_LINE_LENGTH);
+#endif
+
 
     if (!is_malloc_inited)
         panic("malloc not inited");
